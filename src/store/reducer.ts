@@ -1,6 +1,8 @@
 import { ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from "./constants";
 
-export const initialState = JSON.parse(localStorage.getItem("items") || "[]");
+export const initialState = JSON.parse(
+  localStorage.getItem("items") || '{"data":[]}'
+);
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
