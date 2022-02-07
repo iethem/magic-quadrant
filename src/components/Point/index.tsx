@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
 import { Item } from "../../common/Item";
 import { useAppStore } from "../../Context";
@@ -44,7 +44,7 @@ const Point: React.FC<any> = ({ id, label, vision, ability }: Item) => {
   const [isDragging, setIsDragging] = useState(false);
   const { updateItem, dispatch } = useAppStore();
 
-  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDrag = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     const parent = (
       e.target as HTMLDivElement
     ).parentElement!.getBoundingClientRect();
@@ -57,7 +57,7 @@ const Point: React.FC<any> = ({ id, label, vision, ability }: Item) => {
     };
 
     dispatch(updateItem(item));
-  };
+  }, [id, label, vision, ability]);
 
   return (
     <>

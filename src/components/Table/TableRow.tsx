@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 
 import { Item } from "../../common/Item";
 import { useAppStore } from "../../Context";
@@ -13,14 +13,14 @@ interface Props {
 function TableRow({ item }: Props) {
   const { dispatch, updateItem, deleteItem } = useAppStore();
 
-  const handleDelete = (itemId: string) => {
+  const handleDelete = useCallback((itemId: string) => {
     dispatch(deleteItem(itemId));
-  };
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newItem = { ...item, [e.target.name]: e.target.value };
     dispatch(updateItem(newItem));
-  };
+  }, [item]);
 
   return (
     <Table.Row key={item.id}>
