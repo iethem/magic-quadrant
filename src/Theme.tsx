@@ -1,6 +1,10 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
+interface ThemeProps {
+  children: React.ReactNode,
+}
+
 const theme = {
   colors: {
     DARK_GREY: "#696969",
@@ -11,7 +15,7 @@ const theme = {
   },
 };
 
-const Theme = ({ children }: any) => (
+const Theme = ({ children }: ThemeProps) => (
   <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 

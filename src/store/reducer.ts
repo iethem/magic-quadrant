@@ -1,33 +1,35 @@
-import { ADD_ITEM, DELETE_ITEM, UPDATE_ITEM } from "./constants";
+import Item from "../common/Item";
+import State from "../common/State";
+import { Actions, ActionTypes } from "./actions";
 
 export const initialState = JSON.parse(
   localStorage.getItem("items") || '{"data":[]}'
 );
 
-const reducer = (state: any, action: any) => {
+const reducer = (state: State, action: Actions) => {
   switch (action.type) {
-    case ADD_ITEM:
+    case ActionTypes.addItem:
       return {
-        data: [...state.data, action.item],
+        data: [...state.data, action.payload],
       };
 
-    case UPDATE_ITEM: {
+    case ActionTypes.updateItem: {
       const foundCompanyIdx = state.data.findIndex(
-        (s: any) => s.id === action.item.id
+        (s) => s.id === action.payload.id
       );
       const data = [...state.data];
-      if (action.item.ability > 100) action.item.ability = 100;
-      if (action.item.vision > 100) action.item.vision = 100;
-      if (action.item.ability < 0) action.item.ability = 0;
-      if (action.item.vision < 0) action.item.vision = 0;
-      data[foundCompanyIdx] = action.item;
+      if (action.payload.ability > 100) action.payload.ability = 100;
+      if (action.payload.vision > 100) action.payload.vision = 100;
+      if (action.payload.ability < 0) action.payload.ability = 0;
+      if (action.payload.vision < 0) action.payload.vision = 0;
+      data[foundCompanyIdx] = action.payload;
 
       return { ...state, data };
     }
 
-    case DELETE_ITEM:
+    case ActionTypes.deleteItem:
       return {
-        data: state.data.filter((item: any) => item.id !== action.itemId),
+        data: state.data.filter((item: Item) => item.id !== action.payload),
       };
 
     default:

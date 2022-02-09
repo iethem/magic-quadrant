@@ -1,7 +1,11 @@
 import React, { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
-import { Item } from "../../common/Item";
+import Item from "../../common/Item";
 import { useAppStore } from "../../Context";
+
+interface CircleProps {
+  isDragging?: boolean;
+}
 
 const StyledPoint = styled.div`
   ${({ theme: { colors } }) => css`
@@ -27,7 +31,7 @@ const Label = styled.div`
   `}
 `;
 
-const Circle = styled.div<any>`
+const Circle = styled.div<CircleProps>`
   ${({ isDragging }) => css`
     border: 1px solid black;
     border-radius: 50%;
@@ -40,24 +44,27 @@ const Circle = styled.div<any>`
   `};
 `;
 
-const Point: React.FC<any> = ({ id, label, vision, ability }: Item) => {
+const Point = ({ id, label, vision, ability }: Item) => {
   const [isDragging, setIsDragging] = useState(false);
   const { updateItem, dispatch } = useAppStore();
 
-  const handleDrag = useCallback((e: React.DragEvent<HTMLDivElement>) => {
-    const parent = (
-      e.target as HTMLDivElement
-    ).parentElement!.getBoundingClientRect();
+  const handleDrag = useCallback(
+    (e: React.DragEvent<HTMLDivElement>) => {
+      const parent = (
+        e.target as HTMLDivElement
+      ).parentElement!.getBoundingClientRect();
 
-    const item = {
-      id,
-      label,
-      vision: +((e.clientX - parent.x) / 4).toFixed(2),
-      ability: -((e.clientY - parent.y - 400) / 4).toFixed(2),
-    };
+      const item = {
+        id,
+        label,
+        vision: +((e.clientX - parent.x) / 4).toFixed(2),
+        ability: -((e.clientY - parent.y - 400) / 4).toFixed(2),
+      };
 
-    dispatch(updateItem(item));
-  }, [id, label, vision, ability]);
+      dispatch(updateItem(item));
+    },
+    [id, label, vision, ability]
+  );
 
   return (
     <>

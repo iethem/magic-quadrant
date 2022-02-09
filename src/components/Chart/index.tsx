@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
-import { Item } from "../../common/Item";
+import Item from "../../common/Item";
 import { useAppStore } from "../../Context";
 import Point from "../Point";
 

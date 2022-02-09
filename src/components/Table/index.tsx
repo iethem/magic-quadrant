@@ -1,6 +1,6 @@
 import { memo, useCallback } from "react";
 
-import { Item } from "../../common/Item";
+import Item from "../../common/Item";
 import { useAppStore } from "../../Context";
 import Button from "../Button";
 import Table from "./Table";

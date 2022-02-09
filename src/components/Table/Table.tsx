@@ -7,7 +7,15 @@ interface Props {
   borderless?: boolean;
 }
 
-export const StyledTh = styled.th<any>`
+interface StyledThProps {
+  width?: string;
+}
+
+interface StyledTdProps {
+  borderless?: boolean;
+}
+
+export const StyledTh = styled.th<StyledThProps>`
   ${({ width, theme: { colors } }) => css`
     width: ${width || "6rem"};
     background-color: ${colors.LIGHT_BLUE};
@@ -20,7 +28,7 @@ export const StyledTh = styled.th<any>`
   `}
 `;
 
-export const StyledTd = styled.td<any>`
+export const StyledTd = styled.td<StyledTdProps>`
   ${({ borderless, theme: { colors } }) => css`
     border: ${borderless ? "none" : "2px solid" + colors.LIGHT_BLUE};
     border-radius: 4px;

@@ -1,21 +1,21 @@
 import { memo } from "react";
 import styled from "styled-components";
 
-interface IInputProps {
+interface InputProps {
   type?: string;
   name: string;
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const StyledInput = styled.input<any>`
+const StyledInput = styled.input`
   width: 100%;
   padding: 0;
   border: none;
   outline: 0;
 `;
 
-function Input({ type, name, value, onChange }: IInputProps) {
+function Input({ type, name, value, onChange }: InputProps) {
   return (
     <StyledInput
       type={type || "text"}

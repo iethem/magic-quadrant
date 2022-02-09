@@ -1,5 +1,5 @@
-export interface Item {
-  id: string;
+export default interface Item {
+  id: number;
   label: string;
   vision: number;
   ability: number;
