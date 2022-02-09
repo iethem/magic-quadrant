@@ -30,7 +30,7 @@ function TableContainer() {
         <Table.Column>Ability</Table.Column>
         <Table.Column>Delete</Table.Column>
       </Table.Row>
-      {data.map((item: Item) => (
+      {data?.map((item: Item) => (
         <TableRow item={item} />
       ))}
     </Table>
