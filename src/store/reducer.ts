@@ -3,7 +3,7 @@ import State from "../common/State";
 import { Actions, ActionTypes } from "./actions";
 
 export const initialState = JSON.parse(
-  localStorage.getItem("items") || '{"data":[]}'
+  localStorage.getItem("appData") || '{"data":[]}'
 );
 
 const reducer = (state: State, action: Actions) => {

@@ -49,7 +49,7 @@ export function useAppStoreProvider() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      localStorage.setItem("items", JSON.stringify(state));
+      localStorage.setItem("appData", JSON.stringify(state));
     }, 500);
 
     return () => clearTimeout(timer);
